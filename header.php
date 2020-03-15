@@ -8,7 +8,7 @@
         {
             ?>
             <li><a href="profil.php">Mon profil</a></li>
-            <li><a href="deconnection.php">Déconnexion</a></li>
+            <li><a href="deconnexion.php">Déconnexion</a></li>
             <?php
         } else {
             ?>

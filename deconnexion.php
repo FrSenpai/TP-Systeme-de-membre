@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +10,17 @@
 
 <body>
 <?php 
-    include 'header.php';
 
+//Suppression des données
+$_SESSION = array();
+session_destroy();
+
+// Suppression des cookies de connexion automatique
+setcookie('login', '');
+setcookie('pass_hache', '');
+
+//On renvoie à l'accueuil
+header('Location: index.php');
 ?>
 
 

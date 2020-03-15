@@ -1,4 +1,5 @@
 <?php
+session_start();
 try
 {
 	$bdd = new PDO('mysql:host=localhost;dbname=tp-membre;charset=utf8', 'root', '');
@@ -25,13 +26,22 @@ if (isset($_POST['pseudo'])) {
                 $req->closeCursor();
                 $req = $bdd->query('SELECT id FROM membres WHERE pseudo=\''.$_POST['pseudo'].'\'');
                 $donnees = $req->fetch();
-                session_start();
                 $_SESSION['id'] = $donnees['id'];
                 $_SESSION['pseudo'] = $_POST['pseudo'];
                 echo nl2br('Vous êtes authentifié !
                     Voudriez vous ' );
         ?> <a href="index.php"> revenir à l'accueil ?</a> <?php
                 $req->closeCursor();
+                
+                if (isset($_POST['checkbox'])) {
+                    // Si checkbox coché, on enregitre les données en cookie.
+                    setcookie('login', $_POST['pseudo']);
+                    $req = $bdd->query('SELECT pass AS mdp_hash FROM membres WHERE pseudo=\''.$_POST['pseudo'].'\'');
+                    $donnees = $req->fetch();
+
+                    setcookie('pass_hache', $donnees['mdp_hash']);
+                    $req->closeCursor();
+                }
             } else {
                 $req->closeCursor();
                 echo "Le mot de passe est incorrect";

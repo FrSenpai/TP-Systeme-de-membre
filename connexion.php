@@ -19,7 +19,7 @@
         <input type="text" name="pseudo" /></br>
         <label for="pass">Votre mot de passe :</label></br>
         <input type="password" name="pass" /></br>
-        <input type="checkbox">Connexion automatique ?</button></br>
+        <input type="checkbox" name="checkbox">Connexion automatique ?</button></br>
         <input type="submit" />
     </form>
 
